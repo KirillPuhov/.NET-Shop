@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OnlineShop.Models.ViewModels.Products.ProductVM>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2 class="mt-5 text-center">Products</h2>
+
+@if (TempData["SM"] != null)
+{
+    <div class="text-center alet alert-success col-7 card card-body mb-3 mt-3 container">
+        @TempData["SM"]
+    </div>
+}
+
+<p class="text-center mb-5">
+    @Html.ActionLink("Add New Product", "AddProduct", "", new { @class = "btn btn-dark" })
+</p>
+<table class="table col-7 container-sm">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Producer
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price) ₽
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                @Html.ActionLink("Details", "DetailsProduct", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id }, new { @class = "delete" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("a.delete").click(function () {
+                if (!confirm("Confirm product deletion")) return false;
+            });
+        });
+    </script>
+}

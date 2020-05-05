@@ -1,0 +1,81 @@
+﻿<div class="container-fluid">
+    <h1 class="mt-5">Orders</h1>
+
+    @if (TempData["SM"] != null)
+    {
+        <ol class="breadcrumb mb-4 bg-success">
+            <li class="active text-light">@TempData["SM"]</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Orders</li>
+        </ol>
+    }
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Orders</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Product</th>
+                            <th>Count</th>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Product</th>
+                            <th>Count</th>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Email</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Count</td>
+                                <td>@item.TotalPrice</td>
+                                <td><a href="/Admin/Checkorder/Success?id=@item.Id" class="btn btn-success success"><i class="far fa-check-square text-white"></i></a></td>
+                                <td><a href="/Admin/Checkorder/DeleteOrder?id=@item.Id" class="btn btn-danger delete"><i class="far fa-times-circle"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("a.success").click(function () {
+                if (!confirm("Confirm action")) return false;
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("a.delete").click(function () {
+                if (!confirm("Confirm deletion")) return false;
+            });
+        });
+    </script>
+}

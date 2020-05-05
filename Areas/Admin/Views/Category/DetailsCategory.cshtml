@@ -1,0 +1,45 @@
+﻿@model OnlineShop.Models.ViewModels.Categorys.CategoryVM
+
+@{
+    ViewBag.Title = "Details Category";
+}
+
+<h2 class="text-center mt-4">Details Category</h2>
+
+<div class="container">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="mt-4">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="float-md-right mt-lg-n4">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <hr />
+        <dt class="mt-4">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="float-md-right mt-lg-n4">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <hr />
+        <dt class="mt-4 mb-2 text-center">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="text-center">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <hr />
+        <dt class="mt-4 mb-2 text-center">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class="text-center">
+            <img src="@Html.DisplayFor(model => model.Image)" class="img-thumbnail" />
+        </dd>
+        <hr />
+    </dl>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "EditCategory", new { id = Model.Id }) |
+    @Html.ActionLink("Back to Category", "Index")
+</p>

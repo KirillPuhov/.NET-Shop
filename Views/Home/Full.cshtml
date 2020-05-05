@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OnlineShop.Models.ViewModels.Products.ProductVM>
+@{
+    ViewBag.Title = "Full";
+    Layout = "~/Views/Shared/_LFull.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="row card">
+            <div class="row">
+                <img src="@item.Image" class="p-4 col-3">
+                <div class="mt-5">
+                    <h1>@item.Price<a style="color: #707070; ">₽</a></h1>
+                    <h5>@item.ProductModel</h5>
+                    <h2></h2>
+                    <p class="mt-2">Country: @item.Country</p>
+                    <a class="btn btn-dark pr-5 pl-5" style="color:white;" onclick="addToCart(@item.Id)">Buy</a>
+                </div>
+            </div>
+            <div class="float-right mt-lg-n5 mr-5 fs">
+                <p><b>Additionally:</b></p>
+                <p>Guarantee: <b>36 m.</b></p>
+                <p class="mt-2">Страна-производитель: <b>@item.Country</b></p>
+            </div>
+        </div>
+        <div>
+            <h3 class="mt-5 mb-4 text-center">@item.ProductModel</h3>
+            <p>
+                @item.Description
+            </p>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/wwwroot/js/ShopCart.js"></script>
+}

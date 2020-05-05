@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OnlineShop.Models.ViewModels.Cart.CartVM>
+
+@{
+    ViewBag.Title = "Cart Details";
+    Layout = "~/Views/Shared/_Cart.cshtml";
+}
+
+<h2 class="text-center mb-4">Cart</h2>
+
+@if (ViewBag.Message != null)
+{
+    <h3 class="text-center">@ViewBag.Message</h3>
+}
+else
+{
+
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col-form-label-sm p-3 center mb-5">
+                    <div>
+                        <img src="@Html.DisplayFor(modelItem => item.Image)" class="col-img float-lg-left ml-lg-n4 pl-4 pr-3">
+                    </div>
+                    <strong class="d-inline-block mb-2 text-dark mt-3">Price: @Html.DisplayFor(modelItem => item.Total) ₽</strong>
+                    <h3>Model: @Html.DisplayFor(modelItem => item.ProductTitle)</h3>
+                    <div class="qty mt-5">
+                        <a class="h3" onclick="decProduct(@item.ProductId)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                        <div type="number" class="count" name="qty">@Html.DisplayFor(modelItem => item.Quantity)</div>
+                        <a onclick="incProduct(@item.ProductId)" class="h3"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div>
+                        <a onclick="removeProduct(@item.ProductId)" class="btn btn-danger del text-light">Remove</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <footer class="mt-5 container mb-5">
+            <div>
+                <hr>
+                <p class="row">
+                    <h3 class="ml-5"><b>Total price: </b>@ViewBag.GrandTotal ₽</h3>
+                    <a class="btn btn-dark float-lg-right mr-5 mb-5" href="/Order/Index" style=" margin-top: -2.5rem!important;">Checkout</a>
+                </p>
+            </div>
+        </footer>
+    }
+
+    @section Scripts
+    {
+        <script src="~/wwwroot/js/ShopCart.js"></script>
+    }

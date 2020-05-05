@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OnlineShop.Models.ViewModels.Admins.AdminVM>
+
+@{
+    ViewBag.Title = "Admins";
+}
+
+<h2 class="mt-5 text-center">Admins</h2>
+
+@if (TempData["SM"] != null)
+{
+    <div class="text-center alet alert-success col-7 card card-body mb-3 mt-3 container">
+        @TempData["SM"]
+    </div>
+}
+
+<table class="table col-9 container-sm">
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Surname
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Phone
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAdmin", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.Id }, new { @class = "delete" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("a.delete").click(function () {
+                if (!confirm("Confirm admin deletion")) return false;
+            });
+        });
+    </script>
+}

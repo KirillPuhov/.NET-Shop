@@ -1,0 +1,19 @@
+﻿@model IEnumerable<OnlineShop.Models.ViewModels.Categorys.CategoryVM>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel text-center">
+        <a href="/Home/Type?type=@item.Type" style="text-decoration: none; color: black;">
+            <img src="@item.Image">
+            <h2>@item.Title</h2>
+        </a>
+        <p>
+            @item.Description
+        </p>
+        <hr />
+    </div>
+}

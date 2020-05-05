@@ -1,0 +1,8 @@
+﻿@model OnlineShop.Models.ViewModels.Cart.CartVM
+
+
+    <div class="ajaxcart">
+        <a style="color: white;">Your Cart: @Model.Quantity item(s) - @Model.Price</a>
+        <br />
+        @Html.ActionLink("Checkout", "Index", "", new { @class = "text-danger" })
+    </div>
